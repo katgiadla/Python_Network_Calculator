@@ -1,3 +1,6 @@
+import socket
+import ifaddr
+
 def Main():
     StartOption = True
     while StartOption == True:
@@ -21,4 +24,10 @@ def Main():
                     break
     return
 
-Main()
+adapters = ifaddr.get_adapters()
+for adapter in adapters:
+    print("IPs of network adapter " + adapter.nice_name)
+    for ip in adapter.ips:
+        print("   %s/%s" % (ip.ip, ip.network_prefix))
+
+# Main()
