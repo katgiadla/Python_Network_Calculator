@@ -1,4 +1,3 @@
-import socket
 import ifaddr
 
 def Main():
@@ -24,10 +23,10 @@ def Main():
                     break
     return
 
-adapters = ifaddr.get_adapters()
-for adapter in adapters:
-    print("IPs of network adapter " + adapter.nice_name)
-    for ip in adapter.ips:
-        print("   %s/%s" % (ip.ip, ip.network_prefix))
+def GetLocalIP():
+    adapters = ifaddr.get_adapters()
+    myadapter = adapters[6].ips[1].ip + '/' + str(adapters[6].ips[1].network_prefix)
+    return myadapter
 
-# Main()
+##Main function
+Main()
