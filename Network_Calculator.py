@@ -18,9 +18,10 @@ def Main():
             else:
                 if UserChoice == 3:
                     exit()
+                elif UserChoice == 1:
+                    GetLocalIP()
                 else:
-                    print("Let's do!")
-                    break
+                    print("Do something")
     return
 
 def GetLocalIP():
