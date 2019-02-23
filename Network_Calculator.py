@@ -26,8 +26,8 @@ def Main():
 
 def GetLocalIP():
     adapters = ifaddr.get_adapters()
-    myadapter = adapters[6].ips[1].ip + '/' + str(adapters[6].ips[1].network_prefix)
-    return myadapter
+    localIP = adapters[6].ips[1].ip + '/' + str(adapters[6].ips[1].network_prefix)
+    return localIP
 
 ##Main function
 Main()
