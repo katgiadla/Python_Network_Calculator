@@ -54,7 +54,7 @@ def GetUserIP(UserIP: str):
             IPtoCheck = input("Entry correct IP network address: ")
             continue
         break
-    return UserIP
+    return IPtoCheck
 
 ##Main function
 Main()
