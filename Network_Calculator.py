@@ -31,7 +31,7 @@ def Main():
                 if UserChoice == 3:
                     exit()
                 elif UserChoice == 1:
-                    GetLocalIP()
+                    ComputeNetwork["NetworkAddress"] = GetLocalIP()
                 else:
                     print("Do something")
     return
