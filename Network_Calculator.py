@@ -1,4 +1,5 @@
 import ifaddr
+import ipaddress
 
 def Main():
     StartOption = True
@@ -27,6 +28,15 @@ def GetLocalIP():
     adapters = ifaddr.get_adapters()
     myadapter = adapters[6].ips[1].ip + '/' + str(adapters[6].ips[1].network_prefix)
     return myadapter
+
+def GetUserIP(UserIP: str):
+    while True:
+        try:
+            ipaddress.ip_network(UserIP)
+        except ValueError:
+            continue
+        break
+    return UserIP   
 
 ##Main function
 Main()
