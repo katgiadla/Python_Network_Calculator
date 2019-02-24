@@ -36,7 +36,8 @@ def Main():
                 elif UserChoice == 1:
                     ComputeNetwork["NetworkAddress"] = GetLocalIP()
                 else:
-                    print("Do something")
+                    SettedUserIP = input("Entry your IP: ")
+                    ComputeNetwork["NetworkAddress"] = GetUserIP(SettedUserIP)
     return
 
 def GetLocalIP():
@@ -45,13 +46,15 @@ def GetLocalIP():
     return localIP
 
 def GetUserIP(UserIP: str):
+    IPtoCheck = UserIP
     while True:
         try:
-            ipaddress.ip_network(UserIP)
+            ipaddress.ip_network(IPtoCheck)
         except ValueError:
+            IPtoCheck = input("Entry correct IP network address: ")
             continue
         break
-    return UserIP   
+    return UserIP
 
 ##Main function
 Main()
