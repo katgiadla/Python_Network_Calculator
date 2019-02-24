@@ -1,5 +1,17 @@
 import ifaddr
 
+ComputeNetwork = {
+    "NetworkAddress": "",
+    "ClassofNetwork": "",
+    "SubnetMask": "",
+    "BinarySubnetMask": "",
+    "BroadcastAddress": "",
+    "BinaryBroadcastAddress": "",
+    "FirstHostsAddress": "",
+    "BinaryHostsAddress": "",
+    "MaxCountofHost": 0,
+    "BinaryMaxCountofHost": "" }
+
 def Main():
     StartOption = True
     while StartOption == True:
