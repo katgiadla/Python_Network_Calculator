@@ -1,5 +1,6 @@
 import ifaddr
 import json
+import ipaddress
 
 ComputeNetwork = {
     "NetworkAddress": "",
@@ -42,6 +43,15 @@ def GetLocalIP():
     adapters = ifaddr.get_adapters()
     localIP = adapters[6].ips[1].ip + '/' + str(adapters[6].ips[1].network_prefix)
     return localIP
+
+def GetUserIP(UserIP: str):
+    while True:
+        try:
+            ipaddress.ip_network(UserIP)
+        except ValueError:
+            continue
+        break
+    return UserIP   
 
 ##Main function
 Main()
