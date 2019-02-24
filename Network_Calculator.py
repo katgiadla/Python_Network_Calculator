@@ -33,11 +33,15 @@ def Main():
             else:
                 if UserChoice == 3:
                     exit()
-                elif UserChoice == 1:
-                    ComputeNetwork["NetworkAddress"] = GetLocalIP()
                 else:
-                    SettedUserIP = input("Entry your IP: ")
-                    ComputeNetwork["NetworkAddress"] = GetUserIP(SettedUserIP)
+                    if UserChoice == 1:
+                        ComputeNetwork["NetworkAddress"] = GetLocalIP()
+                    else:
+                        SettedUserIP = input("Entry your IP: ")
+                        ComputeNetwork["NetworkAddress"] = GetUserIP(SettedUserIP)
+                    ComputeNetwork["ClassofNetwork"] = DefinitionClassofNetwork(ComputeNetwork["NetworkAddress"])
+
+    print(ComputeNetwork)
     return
 
 def GetLocalIP():
@@ -55,6 +59,23 @@ def GetUserIP(UserIP: str):
             continue
         break
     return IPtoCheck
+
+def DefinitionClassofNetwork(IPtoCheck: str):
+    ClassofNetwork = ""
+    TableofIPAdressWithSubnetMask = IPtoCheck.split("/")
+    TableofIPAdress = TableofIPAdressWithSubnetMask[0].split(".")
+    FirstPartofAddres = int(TableofIPAdress[0])
+    if FirstPartofAddres >= 0 & FirstPartofAddres <= 127:
+        ClassofNetwork = "A"
+    elif FirstPartofAddres >= 128 & FirstPartofAddres <= 191:
+        ClassofNetwork = "B"
+    elif FirstPartofAddres >= 192 & FirstPartofAddres <= 223:
+        ClassofNetwork = "C"
+    elif FirstPartofAddres >= 224 & FirstPartofAddres <= 239:
+        ClassofNetwork = "D"
+    else:
+        ClassofNetwork = "E"
+    return ClassofNetwork
 
 ##Main function
 Main()
