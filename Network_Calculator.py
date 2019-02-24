@@ -1,4 +1,5 @@
 import ifaddr
+import json
 
 ComputeNetwork = {
     "NetworkAddress": "",
@@ -10,7 +11,8 @@ ComputeNetwork = {
     "FirstHostsAddress": "",
     "BinaryHostsAddress": "",
     "MaxCountofHost": 0,
-    "BinaryMaxCountofHost": "" }
+    "BinaryMaxCountofHost": ""
+}
 
 def Main():
     StartOption = True
