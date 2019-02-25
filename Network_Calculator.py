@@ -40,8 +40,10 @@ def Main():
                         SettedUserIP = input("Entry your IP: ")
                         ComputeNetwork["NetworkAddress"] = GetUserIP(SettedUserIP)
                     ComputeNetwork["ClassofNetwork"] = DefinitionClassofNetwork(ComputeNetwork["NetworkAddress"])
+                    ComputeNetwork["SubnetMask"] = ComputeSubnetMask(ComputeNetwork["NetworkAddress"])
 
-    print(ComputeNetwork)
+                    print(ComputeNetwork)
+
     return
 
 def GetLocalIP():
@@ -76,6 +78,13 @@ def DefinitionClassofNetwork(IPtoCheck: str):
     else:
         ClassofNetwork = "E"
     return ClassofNetwork
+
+def ComputeSubnetMask(NetworkIP: str):
+    interface = ipaddress.IPv4Interface(NetworkIP)
+    NetworkIPWithMask = interface.with_netmask
+    TableofNetwork = NetworkIPWithMask.split("/")
+    SubnetMask = TableofNetwork[1]
+    return SubnetMask
 
 ##Main function
 Main()
