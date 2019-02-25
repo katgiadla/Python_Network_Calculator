@@ -63,17 +63,16 @@ def GetUserIP(UserIP: str):
     return IPtoCheck
 
 def DefinitionClassofNetwork(IPtoCheck: str):
-    ClassofNetwork = ""
     TableofIPAdressWithSubnetMask = IPtoCheck.split("/")
     TableofIPAdress = TableofIPAdressWithSubnetMask[0].split(".")
     FirstPartofAddres = int(TableofIPAdress[0])
-    if FirstPartofAddres >= 0 & FirstPartofAddres <= 127:
+    if FirstPartofAddres >= 0 and FirstPartofAddres <= 127:
         ClassofNetwork = "A"
-    elif FirstPartofAddres >= 128 & FirstPartofAddres <= 191:
+    elif FirstPartofAddres >= 128 and FirstPartofAddres <= 191:
         ClassofNetwork = "B"
-    elif FirstPartofAddres >= 192 & FirstPartofAddres <= 223:
+    elif FirstPartofAddres >= 192 and FirstPartofAddres <= 223:
         ClassofNetwork = "C"
-    elif FirstPartofAddres >= 224 & FirstPartofAddres <= 239:
+    elif FirstPartofAddres >= 224 and FirstPartofAddres <= 239:
         ClassofNetwork = "D"
     else:
         ClassofNetwork = "E"
