@@ -85,5 +85,13 @@ def ComputeSubnetMask(NetworkIP: str):
     SubnetMask = TableofNetwork[1]
     return SubnetMask
 
+def SetBinarySubnetMask(SubnetMask: str):
+    TableofSubnetMask = SubnetMask.split(".")
+    TableofSubnetMask = list(map(int, TableofSubnetMask))
+    BinarySubnetMaskTmp = [bin(TableofSubnetMask[i]) for i in range(0,4)]
+    BinarySubnetMaskTmp = [BinarySubnetMaskTmp[2:] for i in range(0,4)]
+    BinarySubnetMask = ".".join(BinarySubnetMaskTmp)
+    return BinarySubnetMask
+
 ##Main function
 Main()
