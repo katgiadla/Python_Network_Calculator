@@ -90,9 +90,10 @@ def SetBinarySubnetMask(SubnetMask: str):
     TableofSubnetMask = SubnetMask.split(".")
     TableofSubnetMask = list(map(int, TableofSubnetMask))
     BinarySubnetMaskTmp = [bin(TableofSubnetMask[i])[2:] for i in range(0,4)]
-    #BinarySubnetMaskTmp = [BinarySubnetMaskTmp[2:] for i in range(0,4) if "0b0" "00000000"]
-    BinarySubnetMaskTmp
-    return BinarySubnetMaskTmp
+    while '0' in BinarySubnetMaskTmp:
+        BinarySubnetMaskTmp[BinarySubnetMaskTmp.index("0")] = "00000000"
+    BinarySubnetMask = ".".join(BinarySubnetMaskTmp)
+    return BinarySubnetMask
 
 ##Main function
 Main()
