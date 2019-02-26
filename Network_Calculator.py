@@ -41,6 +41,7 @@ def Main():
                         ComputeNetwork["NetworkAddress"] = GetUserIP(SettedUserIP)
                     ComputeNetwork["ClassofNetwork"] = DefinitionClassofNetwork(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["SubnetMask"] = ComputeSubnetMask(ComputeNetwork["NetworkAddress"])
+                    ComputeNetwork["BinarySubnetMask"] = SetBinarySubnetMask(ComputeNetwork["SubnetMask"])
 
                     print(ComputeNetwork)
 
@@ -88,10 +89,10 @@ def ComputeSubnetMask(NetworkIP: str):
 def SetBinarySubnetMask(SubnetMask: str):
     TableofSubnetMask = SubnetMask.split(".")
     TableofSubnetMask = list(map(int, TableofSubnetMask))
-    BinarySubnetMaskTmp = [bin(TableofSubnetMask[i]) for i in range(0,4)]
-    BinarySubnetMaskTmp = [BinarySubnetMaskTmp[2:] for i in range(0,4)]
-    BinarySubnetMask = ".".join(BinarySubnetMaskTmp)
-    return BinarySubnetMask
+    BinarySubnetMaskTmp = [bin(TableofSubnetMask[i])[2:] for i in range(0,4)]
+    #BinarySubnetMaskTmp = [BinarySubnetMaskTmp[2:] for i in range(0,4) if "0b0" "00000000"]
+    BinarySubnetMaskTmp
+    return BinarySubnetMaskTmp
 
 ##Main function
 Main()
