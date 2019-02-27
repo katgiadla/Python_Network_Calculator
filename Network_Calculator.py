@@ -44,6 +44,8 @@ def Main():
                     ComputeNetwork["SubnetMask"] = ComputeSubnetMask(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["BinarySubnetMask"] = SetBinaryAddresses(ComputeNetwork["SubnetMask"])
                     ComputeNetwork["BroadcastAddress"] = SetBroadcastAddress(ComputeNetwork["NetworkAddress"])
+                    ComputeNetwork["BinaryBroadcastAddress"] = SetBinaryAddresses(ComputeNetwork["BroadcastAddress"])
+
 
                     print(ComputeNetwork)
 
@@ -99,7 +101,7 @@ def SetBinaryAddresses(AnyAddress: str):
 
 def SetBroadcastAddress(NetworkAddress: str):
     Network = ipaddress.IPv4Network(NetworkAddress, False)
-    BroadcastAddress = Network.broadcast_address
+    BroadcastAddress = str(Network.broadcast_address)
     return BroadcastAddress
 
 ##Main function
