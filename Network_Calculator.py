@@ -47,6 +47,8 @@ def Main():
                     ComputeNetwork["BinaryBroadcastAddress"] = SetBinaryAddresses(ComputeNetwork["BroadcastAddress"])
                     ComputeNetwork["FirstHostsAddress"] = SetFirstHostAddress(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["BinaryHostsAddress"] = SetBinaryAddresses(ComputeNetwork["FirstHostsAddress"])
+                    ComputeNetwork["MaxCountofHost"] = SetCountofHosts(ComputeNetwork["NetworkAddress"])
+                    ComputeNetwork["BinaryMaxCountofHost"] = SetBinaryCountofHosts(ComputeNetwork["MaxCountofHost"])
 
                     print(ComputeNetwork)
 
@@ -111,6 +113,14 @@ def SetFirstHostAddress(NetworkAddress: str):
     TableofHHosts = list(ipaddress.IPv4Network(NetworkAddress, False).hosts())
     return str(TableofHHosts[0])
 
+def SetCountofHosts(NetworkAddress: str):
+    TableofNetwork = NetworkAddress.split('/')
+    ShortSubnetMask = int(TableofNetwork[1])
+    CountofHosts = pow(2, 32 - ShortSubnetMask)
+    return CountofHosts
+
+def SetBinaryCountofHosts(CountofHosts: int):
+    return bin(CountofHosts)[2:]
 
 ##Main function
 Main()
