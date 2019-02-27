@@ -12,7 +12,8 @@ ComputeNetwork = {
     "FirstHostsAddress": "",
     "BinaryHostsAddress": "",
     "MaxCountofHost": 0,
-    "BinaryMaxCountofHost": ""
+    "BinaryMaxCountofHost": "",
+    "OnlyIP": ""
 }
 
 def Main():
@@ -39,6 +40,7 @@ def Main():
                     else:
                         SettedUserIP = input("Entry your IP: ")
                         ComputeNetwork["NetworkAddress"] = GetUserIP(SettedUserIP)
+                    ComputeNetwork["OnlyIP"] = GetOnlyIP(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["ClassofNetwork"] = DefinitionClassofNetwork(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["SubnetMask"] = ComputeSubnetMask(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["BinarySubnetMask"] = SetBinarySubnetMask(ComputeNetwork["SubnetMask"])
@@ -62,6 +64,9 @@ def GetUserIP(UserIP: str):
             continue
         break
     return IPtoCheck
+
+def GetOnlyIP(NetworkAddress: str):
+    return NetworkAddress.split('/')
 
 def DefinitionClassofNetwork(IPtoCheck: str):
     TableofIPAdressWithSubnetMask = IPtoCheck.split("/")
@@ -94,6 +99,12 @@ def SetBinarySubnetMask(SubnetMask: str):
         BinarySubnetMaskTmp[BinarySubnetMaskTmp.index("0")] = "00000000"
     BinarySubnetMask = ".".join(BinarySubnetMaskTmp)
     return BinarySubnetMask
+
+
+def SetBroadcastAddress(IPAddress: str, SubnetMask: str):
+    Network = ipaddress.IPv4Network(IPAddress + '/' + SubnetMask, False)
+    BroadcastAddress = Network.broadcast_address
+    return BroadcastAddress
 
 ##Main function
 Main()
