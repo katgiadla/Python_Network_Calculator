@@ -42,7 +42,7 @@ def Main():
 
                     ComputeNetwork["ClassofNetwork"] = DefinitionClassofNetwork(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["SubnetMask"] = ComputeSubnetMask(ComputeNetwork["NetworkAddress"])
-                    ComputeNetwork["BinarySubnetMask"] = SetBinarySubnetMask(ComputeNetwork["SubnetMask"])
+                    ComputeNetwork["BinarySubnetMask"] = SetBinaryAddresses(ComputeNetwork["SubnetMask"])
                     ComputeNetwork["BroadcastAddress"] = SetBroadcastAddress(ComputeNetwork["NetworkAddress"])
 
                     print(ComputeNetwork)
@@ -88,15 +88,14 @@ def ComputeSubnetMask(NetworkIP: str):
     SubnetMask = TableofNetwork[1]
     return SubnetMask
 
-def SetBinarySubnetMask(SubnetMask: str):
-    TableofSubnetMask = SubnetMask.split(".")
-    TableofSubnetMask = list(map(int, TableofSubnetMask))
-    BinarySubnetMaskTmp = [bin(TableofSubnetMask[i])[2:] for i in range(0,4)]
-    while '0' in BinarySubnetMaskTmp:
-        BinarySubnetMaskTmp[BinarySubnetMaskTmp.index("0")] = "00000000"
-    BinarySubnetMask = ".".join(BinarySubnetMaskTmp)
-    return BinarySubnetMask
-
+def SetBinaryAddresses(AnyAddress: str):
+    TableofAnyAddress = AnyAddress.split(".")
+    TableofAnyAddress = list(map(int, TableofAnyAddress))
+    BinaryAddressTmp = [bin(TableofAnyAddress[i])[2:] for i in range(0, 4)]
+    while '0' in BinaryAddressTmp:
+        BinaryAddressTmp[BinaryAddressTmp.index("0")] = "00000000"
+    BinaryAddress = ".".join(BinaryAddressTmp)
+    return BinaryAddress
 
 def SetBroadcastAddress(NetworkAddress: str):
     Network = ipaddress.IPv4Network(NetworkAddress, False)
