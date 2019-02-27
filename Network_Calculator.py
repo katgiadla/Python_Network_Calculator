@@ -45,7 +45,7 @@ def Main():
                     ComputeNetwork["BinarySubnetMask"] = SetBinaryAddresses(ComputeNetwork["SubnetMask"])
                     ComputeNetwork["BroadcastAddress"] = SetBroadcastAddress(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["BinaryBroadcastAddress"] = SetBinaryAddresses(ComputeNetwork["BroadcastAddress"])
-
+                    ComputeNetwork["FirstHostsAddress"] = SetFirstHostAddress(ComputeNetwork["NetworkAddress"])
 
                     print(ComputeNetwork)
 
@@ -103,6 +103,11 @@ def SetBroadcastAddress(NetworkAddress: str):
     Network = ipaddress.IPv4Network(NetworkAddress, False)
     BroadcastAddress = str(Network.broadcast_address)
     return BroadcastAddress
+
+def SetFirstHostAddress(NetworkAddress: str):
+    TableofHHosts = list(ipaddress.IPv4Network(NetworkAddress, False).hosts())
+    return str(TableofHHosts[0])
+
 
 ##Main function
 Main()
