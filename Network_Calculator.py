@@ -97,6 +97,8 @@ def SetBinaryAddresses(AnyAddress: str):
     BinaryAddressTmp = [bin(TableofAnyAddress[i])[2:] for i in range(0, 4)]
     while '0' in BinaryAddressTmp:
         BinaryAddressTmp[BinaryAddressTmp.index("0")] = "00000000"
+    while '1' in BinaryAddressTmp:
+        BinaryAddressTmp[BinaryAddressTmp.index("1")] = "00000001"
     BinaryAddress = ".".join(BinaryAddressTmp)
     return BinaryAddress
 
