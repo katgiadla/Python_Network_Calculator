@@ -46,6 +46,7 @@ def Main():
                     ComputeNetwork["BroadcastAddress"] = SetBroadcastAddress(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["BinaryBroadcastAddress"] = SetBinaryAddresses(ComputeNetwork["BroadcastAddress"])
                     ComputeNetwork["FirstHostsAddress"] = SetFirstHostAddress(ComputeNetwork["NetworkAddress"])
+                    ComputeNetwork["BinaryHostsAddress"] = SetBinaryAddresses(ComputeNetwork["FirstHostsAddress"])
 
                     print(ComputeNetwork)
 
