@@ -58,7 +58,7 @@ def GetUserIP(UserIP: str):
     IPtoCheck = UserIP
     while True:
         try:
-            ipaddress.ip_network(IPtoCheck)
+            ipaddress.IPv4Network(IPtoCheck, False)
         except ValueError:
             IPtoCheck = input("Entry correct IP network address: ")
             continue
