@@ -2,18 +2,7 @@ import ifaddr
 import json
 import ipaddress
 
-ComputeNetwork = {
-    "NetworkAddress": "",
-    "ClassofNetwork": "",
-    "SubnetMask": "",
-    "BinarySubnetMask": "",
-    "BroadcastAddress": "",
-    "BinaryBroadcastAddress": "",
-    "FirstHostsAddress": "",
-    "BinaryHostsAddress": "",
-    "MaxCountofHost": 0,
-    "BinaryMaxCountofHost": "",
-}
+ComputeNetwork = {}
 
 def Main():
     StartOption = True
@@ -49,8 +38,9 @@ def Main():
                     ComputeNetwork["BinaryHostsAddress"] = SetBinaryAddresses(ComputeNetwork["FirstHostsAddress"])
                     ComputeNetwork["MaxCountofHost"] = SetCountofHosts(ComputeNetwork["NetworkAddress"])
                     ComputeNetwork["BinaryMaxCountofHost"] = SetBinaryCountofHosts(ComputeNetwork["MaxCountofHost"])
-
                     print(ComputeNetwork)
+                    SaveToJSONFile(ComputeNetwork)
+                    print("Your data are saved in JSON file")
 
     return
 
@@ -121,6 +111,11 @@ def SetCountofHosts(NetworkAddress: str):
 
 def SetBinaryCountofHosts(CountofHosts: int):
     return bin(CountofHosts)[2:]
+
+def SaveToJSONFile(NetworkInfo: dict):
+    with open('myNetwork.json', 'w') as outfile:
+        json.dump(NetworkInfo, outfile)
+    return
 
 ##Main function
 Main()
