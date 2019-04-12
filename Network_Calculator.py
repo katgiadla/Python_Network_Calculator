@@ -1,10 +1,11 @@
 import ifaddr
 import json
 import ipaddress
+import sys
 
 ComputeNetwork = {}
 
-def Main():
+def Main(argv):
     StartOption = True
     while StartOption == True:
         print("Choose, what want you to do?")
@@ -26,7 +27,10 @@ def Main():
                     if UserChoice == 1:
                         ComputeNetwork["NetworkAddress"] = GetLocalIP()
                     else:
-                        SettedUserIP = input("Entry your IP: ")
+                        if len(argv) == 2:
+                            SettedUserIP = argv[1]
+                        else:
+                            SettedUserIP = input("Entry your IP: ")
                         ComputeNetwork["NetworkAddress"] = GetUserIP(SettedUserIP)
 
                     ComputeNetwork["ClassofNetwork"] = DefinitionClassofNetwork(ComputeNetwork["NetworkAddress"])
@@ -118,4 +122,4 @@ def SaveToJSONFile(NetworkInfo: dict):
     return
 
 ##Main function
-Main()
+Main(sys.argv)
